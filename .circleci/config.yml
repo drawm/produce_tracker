@@ -1,0 +1,21 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2.0
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.11.4
+
+    steps:
+      - checkout
+
+      - run:
+          name: Installing dependencies
+          command: cd frontend && npm install
+
+      - run:
+          name: Run tests
+          command: cd frontend && npm run unit
