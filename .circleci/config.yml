@@ -8,14 +8,14 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:8.11.4
-
+    working_directory: ./frontend
     steps:
       - checkout
 
       - run:
           name: Installing dependencies
-          command: cd frontend && yarn install
+          command: yarn install
 
       - run:
           name: Run tests
-          command: cd frontend && yarn unit
+          command: yarn unit
