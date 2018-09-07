@@ -14,8 +14,8 @@ jobs:
 
       - run:
           name: Installing dependencies
-          command: cd frontend && npm install
+          command: cd frontend && yarn install
 
       - run:
           name: Run tests
-          command: cd frontend && npm run unit
+          command: cd frontend && yarn unit

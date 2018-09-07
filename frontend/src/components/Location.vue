@@ -4,7 +4,7 @@
       <v-layout row justify-center>
         <v-flex xs12 sm8 md4>
           <v-card>
-            <v-toolbar color="yellow">
+            <v-toolbar color="green">
               <v-toolbar-title>Locations</v-toolbar-title>
               <v-spacer></v-spacer>
               <v-btn icon>
@@ -14,16 +14,28 @@
                 <v-icon>library_add</v-icon>
               </v-btn>
             </v-toolbar>
-            <v-list two-line>
-              <template v-for="(item, index) in locations">
-                <v-list-tile :key="index">
-                  <v-list-tile-content>
-                    <v-list-tile-title v-html="item.title"></v-list-tile-title>
-                    <v-list-tile-sub-title v-html="item.description"></v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-              </template>
-            </v-list>
+            <v-expansion-panel>
+              <v-expansion-panel-content
+                v-for="(item, index) in locations"
+                :key="index"
+              >
+                <div slot="header">{{ item.name }}</div>
+                <v-card>
+                  <v-card-text>
+                    <span>{{ item.name }}</span>
+                    <br>
+                    <span>{{ item.streetNumber }}</span>
+                    <span>{{ item.streetName }}</span>
+                    <br>
+                    <span>{{ item.city }}</span>
+                    <span>{{ item.province }}</span>
+                    <span>{{ item.country }}</span>
+                    <br>
+                    <span>{{ item.postalcode }}</span>
+                  </v-card-text>
+                </v-card>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
           </v-card>
         </v-flex>
       </v-layout>
@@ -146,20 +158,13 @@ export default {
       addLocation: false,
       locations: [
         {
-          title: 'Some Title One',
-          description: 'Description of some location. blag blah blah'
-        },
-        {
-          title: 'Some Title One',
-          description: 'Description of some location. blag blah blah'
-        },
-        {
-          title: 'Some Title One',
-          description: 'Description of some location. blag blah blah'
-        },
-        {
-          title: 'Some Title One',
-          description: 'Description of some location. blag blah blah'
+          name: 'Super Market One',
+          streetNumber: 1234,
+          streetName: 'The Street',
+          city: 'Montreal',
+          province: 'Quebec',
+          country: 'Canada',
+          postalcode: 'H0H0H0'
         }
       ]
     }
@@ -167,16 +172,14 @@ export default {
   methods: {
     submit () {
       if (this.$refs.addLocationForm.validate()) {
-        let title = this.locationName
-        let description = this.streeNumber + ' ' +
-                          this.streetName + ' ' +
-                          this.city + ' ' +
-                          this.province + ' ' +
-                          this.country + ' ' +
-                          this.postalcode
         this.locations.push({
-          title,
-          description
+          name: this.locationName,
+          streetNumber: this.streetNumber,
+          streetName: this.streetName,
+          city: this.city,
+          province: this.province,
+          country: this.country,
+          postalcode: this.postalcode
         })
 
         this.addLocation = false
