@@ -8,14 +8,11 @@ describe('Location.vue', () => {
   const localVue = createLocalVue()
   localVue.use(Vuetify)
 
-  mount(Location, {
+  const wrp = mount(Location, {
       localVue: localVue
   })
 
   it('should render correct contents', () => {
-    const Constructor = Vue.extend(Location)
-    const vm = new Constructor().$mount()
-    expect(vm.$el.querySelector('v-toolbar-title').textContent).toEqual('Locations')
-    //expect(vm.$el.querySelector('.hello h1').textContent).toEqual('Welcome to Your Vue.js App')
+    expect(wrp.find('div.v-toolbar__title').text()).toEqual('Locations')
   })
 })
